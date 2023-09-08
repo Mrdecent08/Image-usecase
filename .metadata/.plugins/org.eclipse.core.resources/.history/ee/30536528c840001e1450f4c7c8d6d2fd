@@ -1,0 +1,6 @@
+spring.cloud.config.import-check.enabled=false
+
+spring.application.name = image-data
+
+spring.data.mongodb.uri=mongodb://localhost:27017/testDb
+server.port = 8088

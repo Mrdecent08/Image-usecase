@@ -1,0 +1,58 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.exception.NoUserFoundException;
+import com.example.demo.model.Customer;
+import com.example.demo.repository.CustomerRepository;
+
+@Service
+public class CustomerService {
+
+	private CustomerRepository customerRepository;
+	
+	@Autowired
+	public CustomerService(CustomerRepository customerRepository) {
+		super();
+		this.customerRepository = customerRepository;
+	}
+
+
+	public List<Customer> getAllCustomers() {
+		return customerRepository.findAll();
+	}
+
+	@KafkaListener(topics = "CustomerTopic" , groupId = "customerData-group")
+	public Customer saveCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+
+
+	public Optional<Customer> getCustomerById(Long id) {
+		if(customerRepository.findById(id)==null) {
+			throw new NoUserFoundException("No User Found");
+		}
+		return customerRepository.findById(id);
+	}
+	
+	public void deleteCustomerById(Long id) {
+		customerRepository.deleteById(id);
+	}
+
+
+	public Customer updateCustomer(Customer customer, Long id) {
+		return customerRepository.save(customer);
+	}
+
+
+	public Customer login(String username, String password) {
+		
+		return customerRepository.findByUsernameAndPassword(username,password);
+	}
+
+}

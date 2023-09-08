@@ -1,0 +1,30 @@
+package com.example.demo.model;
+
+public class Authenticated {
+
+	private boolean authCode;
+
+	public Authenticated() {
+		super();
+	}
+
+	public Authenticated(boolean authCode) {
+		super();
+		this.authCode = authCode;
+	}
+
+	public boolean isAuthCode() {
+		return authCode;
+	}
+
+	public void setAuthCode(boolean authCode) {
+		this.authCode = authCode;
+	}
+
+	@Override
+	public String toString() {
+		return "Authenticated [authCode=" + authCode + "]";
+	}
+	
+	
+}

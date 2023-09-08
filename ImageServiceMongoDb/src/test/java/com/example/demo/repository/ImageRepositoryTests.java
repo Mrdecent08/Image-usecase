@@ -1,0 +1,78 @@
+package com.example.demo.repository;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+
+import com.example.demo.model.Image;
+
+@DataMongoTest
+public class ImageRepositoryTests{
+
+	@Autowired
+	private ImageRepository imageRepository;
+
+	@DisplayName("Junit Test to save Image !")
+	@Test
+	public void givenImageObject_whenSave_thenReturnSuccess() {
+		Image image = new Image("1","Image 1", "Image 1 Description", "0".getBytes(), 1);
+		Image savedImage = imageRepository.save(image);
+		Assertions.assertThat(savedImage).isNotNull();
+		assertThat(savedImage.getId()).isNotNull();
+
+	}
+	
+	@DisplayName("Junit Test to get All Images")
+	@Test
+	public void givenImageList_whenFindAll_thenReturnImageList(){
+		Image c1 = new Image("1","Image 2", "Image 2 Description", "0".getBytes(), 1);
+		Image c2 = new Image("1","Image 2", "Image 2 Description", "1".getBytes(), 2);
+		imageRepository.save(c1);
+		imageRepository.save(c2);
+		
+		List<Image> ImageList = imageRepository.findAll();
+		assertThat(ImageList).isNotNull();
+	}
+	
+	@DisplayName("Junit Test to get Image By Id")
+	@Test
+	public void givenImageObject_whenFindById_thenReturnImageObject(){
+		Image c1 = new Image("1","Image 1", "Image 1 Description", "0".getBytes(), 1);
+		imageRepository.save(c1);
+		
+		Optional<Image> Image = imageRepository.findById("1");
+		assertThat(Image).isNotNull();
+	}
+	
+	@DisplayName("Junit Test to Update Image By Id")
+	@Test
+	public void givenImageObject_whenUpdateById_thenReturnImageObject(){
+		Image c1 = new Image("1","Image 1", "Image 1 Description", "0".getBytes(), 1);
+		imageRepository.save(c1);
+		
+		Image image = imageRepository.findById("1").get();
+		image.setUserId(2);
+		imageRepository.save(image);
+		
+		Image updatedImage = imageRepository.findById("1").get();		
+		assertThat(updatedImage.getUserId()).isEqualTo(2);
+	}
+	
+	@DisplayName("Junit Test to Delete Image By Id")
+	@Test
+	public void givenImageObject_whenDeleteById_thenRemoveImageObject(){
+		Image c1 = new Image("1","Image 1", "Image 1 Description", "0".getBytes(), 1);
+		imageRepository.save(c1);
+		
+		imageRepository.deleteById("1");
+		Optional<Image> deletedImage = imageRepository.findById("1");		
+		assertThat(deletedImage).isEmpty();
+	}
+}

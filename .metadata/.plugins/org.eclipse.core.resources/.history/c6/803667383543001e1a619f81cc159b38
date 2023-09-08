@@ -1,0 +1,71 @@
+package com.example.demo.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.Customer;
+import com.example.demo.service.CustomerService;
+
+@RestController
+public class CustomerController {
+
+	Logger logger = LoggerFactory.getLogger(CustomerController.class);
+
+	private CustomerService customerService;
+
+	public CustomerController(CustomerService customerService) {
+		super();
+		this.customerService = customerService;
+	}
+
+	@GetMapping("/customers")
+	public List<Customer> getAllCustomers() {
+		logger.info("Retrieving All Customers Using PostgreSQL DB");
+		return customerService.getAllCustomers();
+	}
+	
+	@PostMapping("/customers")
+	public Customer saveCustomer(@RequestBody Customer customer) {
+		logger.info("Saving of Customer Details IN PostgreSQL DB");
+		return customerService.saveCustomer(customer);
+	}
+	
+	@GetMapping("/customers/{id}")
+	public Customer getCustomerById(@PathVariable Long id) {
+		logger.info("Retrieving of Customer Based On Customer ID Using PostgreSQL DB");
+		Optional<Customer> customer = customerService.getCustomerById(id);
+		if(customer==null) {
+			return null;
+		}
+		return customer.get();
+	}
+	
+	@DeleteMapping("/customers/{id}")
+	public String deleteCustomerById(@PathVariable Long id) {
+		customerService.deleteCustomerById(id);
+		return "Successful deleted the Customer with Id : "+id;
+	}
+	
+	@PutMapping("/customers/{id}")
+	public Customer updateCustomer(@RequestBody Customer customer,@PathVariable Long id) {
+		logger.info("Updating of Customer Details Based On Id In PostgreSQL DB");
+		return customerService.updateCustomer(customer,id);
+	}
+	
+	@GetMapping("/customers/login")
+	public boolean customerLogin(@RequestParam String username,@RequestParam String password) {
+		logger.info("Login Functionality!");
+		return customerService.login(username,password) != null;
+	}
+}

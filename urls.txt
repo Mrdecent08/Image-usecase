@@ -1,0 +1,20 @@
+Eureka Server: 
+
+http://localhost:8761/
+
+User Service :
+Get All Customers	 ->	 http://localhost:8765/user-data/customers
+Save A new Customer 	 -> 	 http://localhost:8765/user-data/customers   
+			 		Json Data -> ({
+    						"username":"Aditya",
+    						"password":"7330"
+					})
+Get Customer By Id 	-> 	http://localhost:8765/user-data/customers/2
+Delete Customer By Id	-> 	http://localhost:8765/user-data/customers/2
+Update Customer By Id	-> 	http://localhost:8765/user-data/customers/2
+					Json Data -> ({
+						"id":3,
+    						"username":"Aditya",
+    						"password":"7330"
+					})
+login 			->	http://localhost:8765/user-data/customers/login?username=Srinivas&password=7995

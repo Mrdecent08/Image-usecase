@@ -1,0 +1,8 @@
+spring.cloud.config.import-check.enabled=false
+eureka.client.service-url.default-zone = http://localhost:8761/eureka
+
+spring.application.name = image-data
+spring.data.mongodb.uri=mongodb://localhost:27017/testDb
+server.port=8088
+
+management.endpoints.web.exposure.include= hystrix.stream
