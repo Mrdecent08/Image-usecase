@@ -380,3 +380,18 @@ Binding(CTRL+SHIFT+C,
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.textEditorScope,,,system)
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-09-11 10:26:25.003
+!MESSAGE Classpath changed for project: ImageServiceMongoDb
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-09-11 10:26:25.010
+!MESSAGE Boot project ADDED: ImageServiceMongoDb
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-09-11 10:26:27.865
+!MESSAGE Classpath changed for project: ApiGateway
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-09-11 10:26:35.323
+!MESSAGE Classpath changed for project: NamingServer
+
+!ENTRY org.springframework.tooling.boot.ls 1 0 2023-09-11 10:26:37.412
+!MESSAGE Classpath changed for project: userService
