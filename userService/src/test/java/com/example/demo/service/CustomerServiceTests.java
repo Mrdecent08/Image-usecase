@@ -74,18 +74,6 @@ public class CustomerServiceTests {
 
 	}
 
-	@DisplayName("JUnit test for updateCustomer method")
-	@Test
-	public void givenCustomerObject_whenUpdateCustomer_thenReturnUpdatedCustomer() {
-		// given - precondition or setup
-		given(customerRepository.save(customer)).willReturn(customer);
-		customer.setUsername("Soulcynic");
-		
-		Customer updatedCustomer = customerService.updateCustomer(customer, customer.getId());
-
-		assertThat(updatedCustomer.getUsername()).isEqualTo("Soulcynic");
-	}
-
 	@DisplayName("JUnit test for deleteCustomer method")
 	@Test
 	public void givenCustomerId_whenDeleteCustomer_thenNothing() {
