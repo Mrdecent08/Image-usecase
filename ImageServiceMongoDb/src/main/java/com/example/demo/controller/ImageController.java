@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.kafka.ImageChangesProducer;
 import com.example.demo.model.Image;
 import com.example.demo.service.ImageService;
 
@@ -35,8 +34,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 )
 public class ImageController {
 	
-	private ImageChangesProducer imageChangesProducer;
-
 	@Value("${login-url}")
 	private String baseUrl;
 	Logger logger = LoggerFactory.getLogger(ImageController.class);
