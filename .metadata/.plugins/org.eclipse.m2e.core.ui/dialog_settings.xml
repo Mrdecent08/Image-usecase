@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\2583863\Documents\Usecase\kafka-demo"/>
 			<item value="C:\Users\2583863\Documents\Usecase"/>
 		</list>
 		<list key="projectNameTemplate">

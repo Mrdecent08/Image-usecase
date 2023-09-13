@@ -85,9 +85,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
+				<!-- 
+					<configuration>
 			        <mainClass>com.baeldung.spring.kafka.KafkaApplication</mainClass>
 			    </configuration>
+				-->
+			
 			</plugin>
 		</plugins>
 		<finalName>user-service</finalName>
